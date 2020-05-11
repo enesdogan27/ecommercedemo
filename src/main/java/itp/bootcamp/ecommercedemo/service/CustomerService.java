@@ -6,8 +6,10 @@ import java.util.Optional;
 
 public interface CustomerService {
 
-    void save0rCreateCustomer(CustomerDTO customerDTO);
+    void createNewCustomer(CustomerDTO customerDTO);
 
     Optional<CustomerDTO> getCustomerByEmail(String email);
+
+    void editCustomer(CustomerDTO customerDTO,String email);
 
 }

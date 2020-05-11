@@ -4,6 +4,7 @@ import itp.bootcamp.ecommercedemo.model.DTO.CustomerDTO;
 import itp.bootcamp.ecommercedemo.model.entity.Customer;
 import itp.bootcamp.ecommercedemo.repository.CustomerRepository;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
+import itp.bootcamp.ecommercedemo.validation.CustomerEmailNotFoundException;
 import itp.bootcamp.ecommercedemo.validation.EmailAlreadyUseException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,9 +22,10 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void save0rCreateCustomer(CustomerDTO customerDTO) {
-        if(customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()){
-            throw new EmailAlreadyUseException("Customer has successfully registered");
+    public void createNewCustomer(CustomerDTO customerDTO) {
+        if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
+            throw new EmailAlreadyUseException("This email address is in use. If you forgot your password please call" +
+                    " help center.");
         }
 
         Customer customer = new Customer();
@@ -47,5 +49,27 @@ public class CustomerServiceImpl implements CustomerService {
             return Optional.of(customerDTO);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void editCustomer(CustomerDTO customerDTO, String email) {
+        Optional<Customer> optionalCustomer = customerRepository.findCustomerByEmail(email);
+        if (!optionalCustomer.isPresent()) {
+            throw new CustomerEmailNotFoundException("Customer not found with given email.");
+        }
+        if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
+            throw new EmailAlreadyUseException("This email address is in use. If you forgot your password please call" +
+                    " help center.");
+        }
+        Customer customer = optionalCustomer.get();
+
+        if (customerDTO.getSurname() != null) customer.setSurname(customerDTO.getSurname());
+        if (customerDTO.getName() != null) customer.setName(customerDTO.getName());
+        if (customerDTO.getEmail() != null) customer.setEmail(customerDTO.getEmail());
+        if (customerDTO.getAddress() != null) customer.setAddress(customerDTO.getAddress());
+
+        customerRepository.save(customer);
+
+
     }
 }
