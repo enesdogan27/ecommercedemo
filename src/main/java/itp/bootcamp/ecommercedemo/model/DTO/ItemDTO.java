@@ -17,8 +17,6 @@ public class ItemDTO {
   private String itemName;
   private String description;
   private BigDecimal price;
-  private int stockId;
-  @Enumerated(value = EnumType.STRING)
   private Category category;
-
+  private int stock;
 }

@@ -29,8 +29,4 @@ public class Item {
   private BigDecimal price;
   @Enumerated(value = EnumType.STRING)
   private Category category;
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "stock_id")
-  private Stock stock;
-
 }
