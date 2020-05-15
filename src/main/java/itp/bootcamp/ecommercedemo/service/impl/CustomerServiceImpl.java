@@ -79,10 +79,9 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerEmailNotFoundException("Customer not found with given email.");
         }
 
-        if (customerRepository.findCustomerByEmail(email).isPresent()) {
             Customer oldCustomer = customerTobeDeleted.get();
             customerRepository.delete(oldCustomer);
-        }
+
     }
 
 
