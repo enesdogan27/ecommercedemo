@@ -37,5 +37,10 @@ public class CustomerController {
         customerService.editCustomer(customerDTO,email);
         return new ResponseEntity("Customer has successfully edited", HttpStatus.OK);
     }
+    @DeleteMapping("{email}")
+    public void deleteCustomer(@PathVariable("email")String email) {
+        customerService.deleteCustomer(email);
+    }
+
 
 }
