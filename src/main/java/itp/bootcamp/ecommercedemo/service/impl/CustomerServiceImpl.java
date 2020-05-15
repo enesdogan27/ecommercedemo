@@ -1,6 +1,6 @@
 package itp.bootcamp.ecommercedemo.service.impl;
 
-import itp.bootcamp.ecommercedemo.model.DTO.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
 import itp.bootcamp.ecommercedemo.model.entity.Customer;
 import itp.bootcamp.ecommercedemo.repository.CustomerRepository;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
@@ -24,8 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void createNewCustomer(CustomerDTO customerDTO) {
         if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
-            throw new EmailAlreadyUseException("This email address is in use. If you forgot your password please call" +
-                    " help center.");
+            throw new EmailAlreadyUseException();
         }
 
         Customer customer = new Customer();
@@ -55,11 +54,10 @@ public class CustomerServiceImpl implements CustomerService {
     public void editCustomer(CustomerDTO customerDTO, String email) {
         Optional<Customer> optionalCustomer = customerRepository.findCustomerByEmail(email);
         if (!optionalCustomer.isPresent()) {
-            throw new CustomerEmailNotFoundException("Customer not found with given email.");
+            throw new CustomerEmailNotFoundException();
         }
         if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
-            throw new EmailAlreadyUseException("This email address is in use. If you forgot your password please call" +
-                    " help center.");
+            throw new EmailAlreadyUseException();
         }
         Customer customer = optionalCustomer.get();
 
