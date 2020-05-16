@@ -1,18 +1,18 @@
 package itp.bootcamp.ecommercedemo.model.entity;
 
 import itp.bootcamp.ecommercedemo.model.constant.Category;
-import java.math.BigDecimal;
-import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class StockItem {
 
   @Id
   @GeneratedValue
