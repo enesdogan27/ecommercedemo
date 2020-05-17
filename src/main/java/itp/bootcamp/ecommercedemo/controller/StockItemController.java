@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("stock")
@@ -21,6 +23,11 @@ public class StockItemController {
     public ResponseEntity deleteStockItemByID(@PathVariable Integer stockId) {
         stockItemService.deleteStockItemById(stockId);
         return ResponseEntity.ok(stockId);
+    }
+    @GetMapping
+    public ResponseEntity getAllStockItem() {
+        List<StockItemDTO> stockItemDTOList = stockItemService.getAllStockItem();
+        return ResponseEntity.ok(stockItemDTOList);
     }
 
 }

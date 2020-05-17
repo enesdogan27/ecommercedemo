@@ -1,10 +1,8 @@
 package itp.bootcamp.ecommercedemo.model.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data

@@ -5,12 +5,12 @@ import itp.bootcamp.ecommercedemo.model.constant.Category;
 import itp.bootcamp.ecommercedemo.model.entity.Item;
 import itp.bootcamp.ecommercedemo.repository.ItemRepository;
 import itp.bootcamp.ecommercedemo.service.ItemService;
-import itp.bootcamp.ecommercedemo.validation.CustomerEmailNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service

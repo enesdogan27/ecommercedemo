@@ -1,23 +1,19 @@
 package itp.bootcamp.ecommercedemo.service.impl;
 
-import itp.bootcamp.ecommercedemo.model.DTO.ItemDTO;
 import itp.bootcamp.ecommercedemo.model.DTO.StockItemDTO;
-import itp.bootcamp.ecommercedemo.model.constant.Category;
-import itp.bootcamp.ecommercedemo.model.entity.Item;
 import itp.bootcamp.ecommercedemo.model.entity.StockItem;
-import itp.bootcamp.ecommercedemo.repository.ItemRepository;
 import itp.bootcamp.ecommercedemo.repository.StockItemRepository;
-import itp.bootcamp.ecommercedemo.service.ItemService;
 import itp.bootcamp.ecommercedemo.service.StockItemService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -28,19 +24,42 @@ public class StockItemServiceImpl implements StockItemService {
 
   @Override
   public void createStockItem(StockItemDTO stockItemDTO) {
-
+    LocalDate localDate = LocalDate.now();
+    LocalDateTime localDateTime = LocalDateTime.now();
     StockItem stockItem = modelMapper.map(stockItemDTO, StockItem.class );
-
-//    StockItem stockItem = new StockItem();
-//    stockItem.setItemName(stockItemDTO.getItemName());
-
+    stockItem.setItemCreatedDate(localDate);
+    stockItem.setItemUpdated(localDateTime);
     stockItemRepository.save(stockItem);
-
-
   }
 
   @Override
   public void deleteStockItemById(Integer stockId) {
     stockItemRepository.deleteById(stockId);
   }
+
+//  @Override
+//  public List<StockItemDTO> getAllStockItem() {
+//    List<StockItemDTO> stockItemDTOS = new ArrayList<>();
+//    stockItemRepository.findAll().forEach(stockItem -> {
+//      StockItemDTO stockItemDTO = new StockItemDTO();
+//      stockItemDTO.setBrand(stockItem.getBrand());
+//      stockItemDTO.setCategory(stockItem.getCategory());
+//      stockItemDTO.setDescription(stockItem.getDescription());
+//      stockItemDTO.setItemName(stockItem.getItemName());
+//      stockItemDTO.setPrice(stockItem.getPrice());
+//      stockItemDTO.setStock(stockItem.getStock());
+//      stockItemDTOS.add(stockItemDTO);
+//    });
+//    return stockItemDTOS;
+//  }
+
+  @Override
+  public List<StockItemDTO> getAllStockItem() {
+    List<StockItem> stockItems = (List<StockItem>) stockItemRepository.findAll();
+       List<StockItemDTO> stockItemDTOS = stockItems.stream()
+               .map(source -> modelMapper.map(source, StockItemDTO.class))
+               .collect(Collectors.toList());
+    return stockItemDTOS;
+  }
+
 }
