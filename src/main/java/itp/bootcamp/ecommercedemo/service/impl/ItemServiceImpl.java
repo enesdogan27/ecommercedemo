@@ -8,6 +8,8 @@ import itp.bootcamp.ecommercedemo.service.ItemService;
 import itp.bootcamp.ecommercedemo.validation.CustomerEmailNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,16 @@ public class ItemServiceImpl implements ItemService {
       itemList.add(itemDTO);
     });
     return itemList;
+  }
+
+  @Override
+  public void deleteByItemId(int itemId) {
+    Optional<Item> deleteItem = itemRepository.findById(itemId);
+    if (!deleteItem.isPresent()){
+      throw new RuntimeException("Item can not be found!");
+      
+    }
+    itemRepository.deleteById(itemId);
   }
 
 }
