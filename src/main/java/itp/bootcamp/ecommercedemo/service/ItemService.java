@@ -10,6 +10,8 @@ public interface ItemService {
 
   List<ItemDTO> getItemByCategory(Category category);
 
+  void deleteByItemId(int itemId);
+
   List<ItemDTO> searchItem(String search,String sort);
 
 }

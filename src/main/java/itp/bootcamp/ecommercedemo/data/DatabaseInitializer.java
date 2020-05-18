@@ -1,7 +1,7 @@
 package itp.bootcamp.ecommercedemo.data;
 
-import itp.bootcamp.ecommercedemo.model.DTO.CustomerDTO;
-import itp.bootcamp.ecommercedemo.model.DTO.ItemDTO;
+import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.dto.ItemDTO;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
 import itp.bootcamp.ecommercedemo.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -115,7 +115,5 @@ public class DatabaseInitializer {
         itemFive.setPrice(BigDecimal.valueOf(25.97));
         itemFive.setStock(70);
         itemService.createItem(itemFive);
-
-
     }
 }

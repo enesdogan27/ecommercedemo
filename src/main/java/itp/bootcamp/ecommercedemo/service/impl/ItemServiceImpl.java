@@ -8,6 +8,8 @@ import itp.bootcamp.ecommercedemo.service.ItemService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -19,25 +21,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    private final ItemRepository itemRepository;
-    private final ModelMapper modelMapper;
+  private final ItemRepository itemRepository;
+  private final ModelMapper modelMapper;
 
-    @Override
-    public void createItem(ItemDTO itemDTO) {
-        Item item = modelMapper.map(itemDTO, Item.class);
-        itemRepository.save(item);
-    }
+  @Override
+  public void createItem(ItemDTO itemDTO) {
+    Item item = modelMapper.map(itemDTO, Item.class);
+    itemRepository.save(item);
+  }
 
-    @Override
-    public List<ItemDTO> getItemByCategory(Category category) {
-        //  enum disi bir deger girilirse bunun exceptionini nerede nasil yazmaliyiz?????
-        List<ItemDTO> itemList = new ArrayList<>();
-        itemRepository.findItemByCategory(category).forEach(item -> {
-            ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
-            itemList.add(itemDTO);
-        });
-        return itemList;
-    }
+  @Override
+  public List<ItemDTO> getItemByCategory(Category category) {
+    //  enum disi bir deger girilirse bunun exceptionini nerede nasil yazmaliyiz?????
+    List<ItemDTO> itemList = new ArrayList<>();
+    itemRepository.findItemByCategory(category).forEach(item -> {
+      ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
+      itemList.add(itemDTO);
+    });
+    return itemList;
+  }
 
     @Override
     public List<ItemDTO> searchItem(String search, String sort) {
@@ -48,5 +50,15 @@ public class ItemServiceImpl implements ItemService {
 
 
     }
+
+  @Override
+  public void deleteByItemId(int itemId) {
+    Optional<Item> deleteItem = itemRepository.findById(itemId);
+    if (!deleteItem.isPresent()){
+      throw new RuntimeException("Item can not be found!");
+
+    }
+    itemRepository.deleteById(itemId);
+  }
 
 }

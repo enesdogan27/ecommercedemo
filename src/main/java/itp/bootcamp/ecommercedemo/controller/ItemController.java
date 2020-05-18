@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("item")
 public class ItemController {
-    private final ItemService itemService;
+  private final ItemService itemService;
 
     @PostMapping
     public ResponseEntity createItem(@RequestBody ItemDTO itemDTO) {
@@ -22,11 +22,17 @@ public class ItemController {
         return ResponseEntity.ok(itemDTO);
     }
 
-    @GetMapping("category/{category}")
-    public ResponseEntity getItemByCategory(@PathVariable Category category) {
-        List<ItemDTO> itemDTOList = itemService.getItemByCategory(category);
-        return ResponseEntity.ok(itemDTOList);
-    }
+  @GetMapping("category/{category}")
+  public ResponseEntity getItemByCategory(@PathVariable Category category) {
+    List<ItemDTO> itemDTOList = itemService.getItemByCategory(category);
+    return ResponseEntity.ok(itemDTOList);
+  }
+
+  @DeleteMapping("{itemid}")
+  public ResponseEntity deleteByItem(@PathVariable(value = "itemid") Integer itemId){
+    itemService.deleteByItemId(itemId);
+    return ResponseEntity.ok("Item has deleted!");
+  }
 
     @GetMapping("search")
     public ResponseEntity searchItem(@RequestParam(name = "search") String search, @RequestParam("sort") String sort) {
