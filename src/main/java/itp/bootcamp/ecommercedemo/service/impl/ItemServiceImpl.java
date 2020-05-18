@@ -1,17 +1,20 @@
 package itp.bootcamp.ecommercedemo.service.impl;
 
-import itp.bootcamp.ecommercedemo.model.DTO.ItemDTO;
+import itp.bootcamp.ecommercedemo.model.dto.ItemDTO;
 import itp.bootcamp.ecommercedemo.model.constant.Category;
 import itp.bootcamp.ecommercedemo.model.entity.Item;
 import itp.bootcamp.ecommercedemo.repository.ItemRepository;
 import itp.bootcamp.ecommercedemo.service.ItemService;
-import itp.bootcamp.ecommercedemo.validation.CustomerEmailNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -38,12 +41,22 @@ public class ItemServiceImpl implements ItemService {
     return itemList;
   }
 
+    @Override
+    public List<ItemDTO> searchItem(String search, String sort) {
+
+
+        return itemRepository.findItemByDescriptionContainingIgnoreCase(search, Sort.by(sort)).stream().map(item -> modelMapper.map(item,
+                ItemDTO.class)).collect(Collectors.toList());
+
+
+    }
+
   @Override
   public void deleteByItemId(int itemId) {
     Optional<Item> deleteItem = itemRepository.findById(itemId);
     if (!deleteItem.isPresent()){
       throw new RuntimeException("Item can not be found!");
-      
+
     }
     itemRepository.deleteById(itemId);
   }

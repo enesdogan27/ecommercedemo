@@ -1,6 +1,6 @@
 package itp.bootcamp.ecommercedemo.service;
 
-import itp.bootcamp.ecommercedemo.model.DTO.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
 
 import java.util.Optional;
 
