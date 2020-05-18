@@ -1,8 +1,7 @@
 package itp.bootcamp.ecommercedemo.controller;
 
-import itp.bootcamp.ecommercedemo.model.DTO.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
-import itp.bootcamp.ecommercedemo.validation.CustomerEmailNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
