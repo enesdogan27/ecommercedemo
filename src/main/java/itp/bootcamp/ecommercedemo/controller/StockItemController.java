@@ -1,6 +1,6 @@
 package itp.bootcamp.ecommercedemo.controller;
 
-import itp.bootcamp.ecommercedemo.model.DTO.StockItemDTO;
+import itp.bootcamp.ecommercedemo.model.dto.StockItemDTO;
 import itp.bootcamp.ecommercedemo.service.StockItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

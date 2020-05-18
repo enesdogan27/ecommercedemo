@@ -1,6 +1,6 @@
 package itp.bootcamp.ecommercedemo.service;
 
-import itp.bootcamp.ecommercedemo.model.DTO.StockItemDTO;
+import itp.bootcamp.ecommercedemo.model.dto.StockItemDTO;
 
 import java.util.List;
 

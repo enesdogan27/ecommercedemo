@@ -1,6 +1,6 @@
 package itp.bootcamp.ecommercedemo.service.impl;
 
-import itp.bootcamp.ecommercedemo.model.DTO.StockItemDTO;
+import itp.bootcamp.ecommercedemo.model.dto.StockItemDTO;
 import itp.bootcamp.ecommercedemo.model.entity.StockItem;
 import itp.bootcamp.ecommercedemo.repository.StockItemRepository;
 import itp.bootcamp.ecommercedemo.service.StockItemService;
@@ -8,10 +8,8 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

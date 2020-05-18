@@ -1,7 +1,7 @@
 package itp.bootcamp.ecommercedemo.validation;
 
 public class CustomerEmailNotFoundException extends RuntimeException {
-    public CustomerEmailNotFoundException(final String msg) {
-        super(msg);
+    public CustomerEmailNotFoundException() {
+        super("Customer not found with given email.");
     }
 }

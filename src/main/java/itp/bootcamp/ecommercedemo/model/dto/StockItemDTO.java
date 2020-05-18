@@ -1,4 +1,4 @@
-package itp.bootcamp.ecommercedemo.model.DTO;
+package itp.bootcamp.ecommercedemo.model.dto;
 
 import itp.bootcamp.ecommercedemo.model.constant.Category;
 import lombok.AllArgsConstructor;
