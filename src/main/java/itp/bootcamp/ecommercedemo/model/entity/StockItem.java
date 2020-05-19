@@ -1,18 +1,20 @@
 package itp.bootcamp.ecommercedemo.model.entity;
 
 import itp.bootcamp.ecommercedemo.model.constant.Category;
-import java.math.BigDecimal;
-import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class StockItem {
 
   @Id
   @GeneratedValue
@@ -24,4 +26,6 @@ public class Item {
   @Enumerated(value = EnumType.STRING)
   private Category category;
   private int stock;
+  private LocalDate itemCreatedDate;
+  private LocalDateTime itemUpdated;
 }
