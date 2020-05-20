@@ -2,11 +2,12 @@ package itp.bootcamp.ecommercedemo.service;
 
 import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
 
+import itp.bootcamp.ecommercedemo.model.entity.Customer;
 import java.util.Optional;
 
 public interface CustomerService {
 
-    void createNewCustomer(CustomerDTO customerDTO);
+    Customer createNewCustomer(CustomerDTO customerDTO);
 
     Optional<CustomerDTO> getCustomerByEmail(String email);
 

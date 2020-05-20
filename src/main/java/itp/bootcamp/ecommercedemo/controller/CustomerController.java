@@ -1,6 +1,7 @@
 package itp.bootcamp.ecommercedemo.controller;
 
 import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.entity.Customer;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,14 +18,14 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity createNewCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
+    public ResponseEntity<Customer> createNewCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
 //           Email check without exception handle
 
 //        if (customerService.getCustomerByEmail(customerDTO.getEmail()).isPresent()) {
 //            return new ResponseEntity("This email address is in use. If you forgot your password please call help center.", HttpStatus.BAD_REQUEST);
 //        }
-        customerService.createNewCustomer(customerDTO);
-        return new ResponseEntity("Customer has successfully registered", HttpStatus.OK);
+        Customer customer = customerService.createNewCustomer(customerDTO);
+        return ResponseEntity.ok(customer);
     }
 
     @PutMapping

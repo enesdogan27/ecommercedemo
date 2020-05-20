@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void createNewCustomer(CustomerDTO customerDTO) {
+    public Customer createNewCustomer(CustomerDTO customerDTO) {
         if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
             throw new EmailAlreadyUseException();
         }
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setEmail(customerDTO.getEmail());
         customer.setName(customerDTO.getName());
         customer.setSurname(customerDTO.getSurname());
-        customerRepository.save(customer);
+        return customerRepository.save(customer);
     }
 
     @Override
