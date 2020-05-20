@@ -12,4 +12,9 @@ public interface CustomerService {
 
     void editCustomer(CustomerDTO customerDTO,String email);
 
+    void deleteCustomer(String email);
+
+
+
+
 }

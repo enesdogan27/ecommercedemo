@@ -70,4 +70,17 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     }
+    @Override
+    public void deleteCustomer(String email) {
+        Optional<Customer> customerTobeDeleted = customerRepository.findCustomerByEmail(email);
+        if (!customerTobeDeleted.isPresent()) {
+            throw new CustomerEmailNotFoundException("Customer not found with given email.");
+        }
+
+            Customer oldCustomer = customerTobeDeleted.get();
+            customerRepository.delete(oldCustomer);
+
+    }
+
+
 }
