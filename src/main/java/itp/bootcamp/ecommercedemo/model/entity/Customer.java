@@ -3,10 +3,7 @@ package itp.bootcamp.ecommercedemo.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -28,7 +25,9 @@ public class Customer {
     @Column(nullable = false)
     private String password;
 
-    private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ADDRESS_ID")
+    private Address address;
 
 
 }

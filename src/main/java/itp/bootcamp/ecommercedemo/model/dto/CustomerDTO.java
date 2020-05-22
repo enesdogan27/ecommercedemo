@@ -1,5 +1,6 @@
 package itp.bootcamp.ecommercedemo.model.dto;
 
+import itp.bootcamp.ecommercedemo.model.entity.Address;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -18,6 +19,6 @@ public class CustomerDTO {
     @Size(min = 8, max = 15)
     private String password;
 
-    private String address;
+    private Address address;
 
 }

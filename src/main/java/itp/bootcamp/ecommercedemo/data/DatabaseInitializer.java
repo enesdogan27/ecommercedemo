@@ -2,6 +2,7 @@ package itp.bootcamp.ecommercedemo.data;
 
 import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
 import itp.bootcamp.ecommercedemo.model.dto.ItemDTO;
+import itp.bootcamp.ecommercedemo.model.entity.Address;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
 import itp.bootcamp.ecommercedemo.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,13 @@ public class DatabaseInitializer {
         CustomerDTO customerOne = new CustomerDTO();
         customerOne.setSurname("SMITH");
         customerOne.setName("JOHN");
-        customerOne.setAddress("LONDON NW12 3SD");
+        Address addressOne = new Address();
+        addressOne.setCountry("United Kingdom");
+        addressOne.setCity("Manchester");
+        addressOne.setStreet("Blackburn Road");
+        addressOne.setPostcode("BL12DD");
+        addressOne.setHouseNumber(133);
+        customerOne.setAddress(addressOne);
         customerOne.setEmail("johnsmith@gmail.com");
         customerOne.setPassword("johnsimthlondon");
         customerService.createNewCustomer(customerOne);
@@ -33,7 +40,13 @@ public class DatabaseInitializer {
         CustomerDTO customerTwo = new CustomerDTO();
         customerTwo.setSurname("WATSON");
         customerTwo.setName("MARRY");
-        customerTwo.setAddress("LONDON NW10 22SAS");
+        Address addressTwo = new Address();
+        addressTwo.setCountry("United Kingdom");
+        addressTwo.setCity("London");
+        addressTwo.setStreet("Abbey Road");
+        addressTwo.setPostcode("NW80AG");
+        addressTwo.setHouseNumber(200);
+        customerTwo.setAddress(addressTwo);
         customerTwo.setEmail("marryjane@gmail.com");
         customerTwo.setPassword("marryjanewatson");
         customerService.createNewCustomer(customerTwo);
@@ -42,7 +55,13 @@ public class DatabaseInitializer {
         CustomerDTO customerThree = new CustomerDTO();
         customerThree.setSurname("LAW");
         customerThree.setName("CHRIS");
-        customerThree.setAddress("MANCHESTER M1 12DE");
+        Address addressThree = new Address();
+        addressThree.setCountry("Netherlands");
+        addressThree.setCity("Apeldoorn");
+        addressThree.setStreet("Tenderlaan");
+        addressThree.setPostcode("7331 AJ");
+        addressThree.setHouseNumber(21);
+        customerThree.setAddress(addressThree);
         customerThree.setEmail("chirslaw@gmail.com");
         customerThree.setPassword("asdasdasd123");
         customerService.createNewCustomer(customerThree);
@@ -51,7 +70,6 @@ public class DatabaseInitializer {
         CustomerDTO customerFour = new CustomerDTO();
         customerFour.setSurname("LYNN");
         customerFour.setName("JENNIFER");
-        customerFour.setAddress("SHEFFIELD S1 3SD");
         customerFour.setEmail("jenny@gmail.com");
         customerFour.setPassword("12341234asd");
         customerService.createNewCustomer(customerFour);
@@ -60,7 +78,6 @@ public class DatabaseInitializer {
         CustomerDTO customerFive = new CustomerDTO();
         customerFive.setSurname("SMITH");
         customerFive.setName("SUE");
-        customerFive.setAddress("LONDON NW12 3SD");
         customerFive.setEmail("suesmith@gmail.com");
         customerFive.setPassword("suesuesue123");
         customerService.createNewCustomer(customerFive);
