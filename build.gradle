@@ -35,9 +35,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
-	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.7'
-
+	compile 'org.modelmapper:modelmapper:2.3.7'
 }
 
 test {

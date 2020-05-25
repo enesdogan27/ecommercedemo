@@ -14,5 +14,4 @@ public interface ItemRepository extends CrudRepository<Item, Integer> {
   List<Item> findItemByCategory(Category category);
 
   List<Item> findItemByDescriptionContainingIgnoreCase(String search, Sort sort);
-
 }

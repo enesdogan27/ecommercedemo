@@ -3,7 +3,6 @@ package itp.bootcamp.ecommercedemo.model.entity;
 import itp.bootcamp.ecommercedemo.model.constant.Category;
 import java.math.BigDecimal;
 import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {
-
   @Id
   @GeneratedValue
   private int id;
