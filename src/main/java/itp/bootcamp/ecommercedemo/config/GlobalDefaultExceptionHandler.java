@@ -14,11 +14,15 @@ public class GlobalDefaultExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
 
     @ExceptionHandler(value = {EmailAlreadyUseException.class, CustomerEmailNotFoundException.class})
-
     public ResponseEntity handleEmailAlreadyUseException(Exception e) {
         logger.error("Controller occurs an exception"+e);
         return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity handleRuntimeException(Exception e){
+        logger.error("An error occurs "+e);
+        return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 
 }

@@ -35,7 +35,6 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-
 	compile 'org.modelmapper:modelmapper:2.3.7'
 }
 

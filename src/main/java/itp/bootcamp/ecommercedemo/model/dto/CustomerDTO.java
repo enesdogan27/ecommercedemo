@@ -1,10 +1,9 @@
-package itp.bootcamp.ecommercedemo.model.DTO;
+package itp.bootcamp.ecommercedemo.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import itp.bootcamp.ecommercedemo.model.entity.Address;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
@@ -20,6 +19,6 @@ public class CustomerDTO {
     @Size(min = 8, max = 15)
     private String password;
 
-    private String address;
+    private Address address;
 
 }

@@ -1,6 +1,7 @@
 package itp.bootcamp.ecommercedemo.service.impl;
 
-import itp.bootcamp.ecommercedemo.model.DTO.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.dto.CustomerDTO;
+import itp.bootcamp.ecommercedemo.model.entity.Address;
 import itp.bootcamp.ecommercedemo.model.entity.Customer;
 import itp.bootcamp.ecommercedemo.repository.CustomerRepository;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
@@ -22,10 +23,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void createNewCustomer(CustomerDTO customerDTO) {
+    public Customer createNewCustomer(CustomerDTO customerDTO) {
         if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
-            throw new EmailAlreadyUseException("This email address is in use. If you forgot your password please call" +
-                    " help center.");
+            throw new EmailAlreadyUseException();
         }
 
         Customer customer = new Customer();
@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setEmail(customerDTO.getEmail());
         customer.setName(customerDTO.getName());
         customer.setSurname(customerDTO.getSurname());
-        customerRepository.save(customer);
+        return customerRepository.save(customer);
     }
 
     @Override
@@ -52,14 +52,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void editCustomer(CustomerDTO customerDTO, String email) {
+    public Customer editCustomer(CustomerDTO customerDTO, String email) {
         Optional<Customer> optionalCustomer = customerRepository.findCustomerByEmail(email);
         if (!optionalCustomer.isPresent()) {
-            throw new CustomerEmailNotFoundException("Customer not found with given email.");
+            throw new CustomerEmailNotFoundException();
         }
         if (customerRepository.findCustomerByEmail(customerDTO.getEmail()).isPresent()) {
-            throw new EmailAlreadyUseException("This email address is in use. If you forgot your password please call" +
-                    " help center.");
+            throw new EmailAlreadyUseException();
         }
         Customer customer = optionalCustomer.get();
 
@@ -70,6 +69,40 @@ public class CustomerServiceImpl implements CustomerService {
 
         customerRepository.save(customer);
 
+        return customer;
+    }
+
+    @Override
+    public boolean deleteCustomer(String email) {
+        Optional<Customer> customerTobeDeleted = customerRepository.findCustomerByEmail(email);
+        if (!customerTobeDeleted.isPresent()) {
+            throw new CustomerEmailNotFoundException();
+        }
+
+        Customer oldCustomer = customerTobeDeleted.get();
+        customerRepository.delete(oldCustomer);
+        return true;
+    }
+
+    @Override
+    public Customer saveOrUpdateCustomerAddressByEmail(String email, Address address) {
+        Optional<Customer> customer = customerRepository.findCustomerByEmail(email);
+        if (!customer.isPresent()) {
+            throw new CustomerEmailNotFoundException();
+        }
+        if (customer.get().getAddress() == null) {
+            customer.get().setAddress(address);
+        } else {
+            Address oldAddress = customer.get().getAddress();
+            if (address.getCountry() != null) oldAddress.setCountry(address.getCountry());
+            if (address.getCity() != null) oldAddress.setCity(address.getCity());
+            if (address.getStreet() != null) oldAddress.setStreet(address.getStreet());
+            if (address.getHouseNumber() != null) oldAddress.setHouseNumber(address.getHouseNumber());
+            if (address.getPostcode() != null) oldAddress.setPostcode(address.getPostcode());
+        }
+        return customerRepository.save(customer.get());
 
     }
+
+
 }
