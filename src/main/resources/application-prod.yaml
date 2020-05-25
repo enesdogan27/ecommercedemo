@@ -1,0 +1,23 @@
+# DEV profile
+
+# Datasource config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_ecommerce?useSSL=false
+    username: user_ecommerce
+    password: Qw!123456
+
+## JPA CONFIG
+# values: none, validate, update, create-drop.
+# production database, you probably would want to use 'validate'.
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+      # open-in-view: false
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        globally_quoted_identifiers: true
+        # hbm2ddl.import_files: /data/data-authors.sql
