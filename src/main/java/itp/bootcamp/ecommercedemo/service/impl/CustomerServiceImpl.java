@@ -38,20 +38,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<CustomerDTO> getCustomerByEmail(String email) {
-        Optional<Customer> customer = customerRepository.findCustomerByEmail(email);
-        if (customer.isPresent()) {
-            CustomerDTO customerDTO = new CustomerDTO();
-            customerDTO.setAddress(customer.get().getAddress());
-            customerDTO.setEmail(customer.get().getEmail());
-            customerDTO.setName(customer.get().getName());
-            customerDTO.setSurname(customer.get().getSurname());
-            return Optional.of(customerDTO);
-        }
-        return Optional.empty();
-    }
-
-    @Override
     public Customer editCustomer(CustomerDTO customerDTO, String email) {
         Optional<Customer> optionalCustomer = customerRepository.findCustomerByEmail(email);
         if (!optionalCustomer.isPresent()) {

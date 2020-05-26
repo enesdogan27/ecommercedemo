@@ -10,8 +10,6 @@ public interface CustomerService {
 
     Customer createNewCustomer(CustomerDTO customerDTO);
 
-    Optional<CustomerDTO> getCustomerByEmail(String email);
-
     Customer editCustomer(CustomerDTO customerDTO, String email);
 
     boolean deleteCustomer(String email);
