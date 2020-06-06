@@ -6,6 +6,7 @@ import itp.bootcamp.ecommercedemo.model.entity.Address;
 import itp.bootcamp.ecommercedemo.service.CustomerService;
 import itp.bootcamp.ecommercedemo.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
 
 import static itp.bootcamp.ecommercedemo.model.constant.Category.*;
 
-
+@Profile("dev")
 @RequiredArgsConstructor
 @Component
 public class DatabaseInitializer {
